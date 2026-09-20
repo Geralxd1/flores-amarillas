@@ -83,7 +83,7 @@ const DESTINATARIOS = {
     mensaje:
       'Hoy el cosmos se llenó de flores amarillas y aun así tú brillas más. ' +
       'Gracias por ser asi como eres: por las risas, las conversaciones y por quedarte siempre. ' +
-      'Feliz primavera, que florezcas hasta en el espacio.'+
+      'Feliz primavera, que florezcas hasta en el espacio.' +
       '  PD: Ya tratame bonito p.',
     cancion: 'audio/amiga.mp3',
     titulo: 'Termonuclear',      // ← nombre de la canción
@@ -111,7 +111,10 @@ const POR_DEFECTO = {
   mensaje:
     'Hoy empieza la primavera y el universo se llenó de flores amarillas. ' +
     'Que tu día florezca con todo lo bonito que mereces.',
-  cancion: null,
+  cancion: 'audio/amarillo.mp3',
+  titulo: 'Flores amarillas',      // ← nombre de la canción
+  artista: 'Yo p',   // ← artista
+  portada: 'img/girasol.jfif',
   color: 0xffd700,
 };
 
@@ -589,7 +592,7 @@ function crearNombre(texto, color) {
   dibujar();
   // Redibuja cuando la tipografía ya cargó
   if (document.fonts && document.fonts.load) {
-    document.fonts.load('600 100px Fraunces').then(dibujar).catch(() => {});
+    document.fonts.load('600 100px Fraunces').then(dibujar).catch(() => { });
   }
   return mesh;
 }
@@ -817,7 +820,7 @@ function iniciar() {
   });
 
   pl.play.addEventListener('click', () => {
-    if (audio.paused) audio.play().then(() => fundir(volumenObjetivo, 600)).catch(() => {});
+    if (audio.paused) audio.play().then(() => fundir(volumenObjetivo, 600)).catch(() => { });
     else audio.pause();
   });
   pl.vol.addEventListener('click', () => {
