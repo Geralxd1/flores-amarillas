@@ -17,6 +17,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
    ===================================================================== */
 
 const EVENTO = {
+  firma: 'Geral',                       // ← tu nombre: sale como "By Geral" y "Atte: Geral"
   pie: 'Feliz Día de las Flores Amarillas 🌼',
   volumenMusica: 0.85,
 };
@@ -27,28 +28,29 @@ const DESTINATARIOS = {
     nombre: 'Lobita',
     color: 0xffd700, // dorado brillante
     modos: {
-      jajas: {
-        boton: 'por los jajas',
-        mensaje:
-          'Ajá, apretaste "por los jajas". Sabía que ibas a elegir esto. ' +
-          'Hoy es el Día de las Flores Amarillas y, en vez de un ramo normal, te mandé un planeta entero: ' +
-          'de nada, ya sé que no lo mereces. De hecho... devuélvemelo, ' +
-          'hasta cuando te pones violenta o dices cosas q me sacan de onda xde.',
-        cancion: 'audio/jaja.mp3',
-        titulo: 'Mala',     // ← cámbialo
-        artista: '6ix9ine ',                 // ← cámbialo
-        portada: 'img/jaja.jpg',      // ← tu imagen (cuadrada)
-      },
       rial: {
-        boton: 'el rial',
+        boton: 'Rial version',
         mensaje:
           'La primavera empieza hoy, pero yo te floreo cuando quieras :v. ' +
           'Cada flor amarilla de este universo es un motivo por el que me alegra que existas. ' +
-          'Gracias por ser lo contrario de nada.',
+          'Gracias por ser lo contrario de nada.' +
+          '  PD: Ya trátame bonito p.',
         cancion: 'audio/rial.mp3',
         titulo: 'Canción random q me encontré x ahi :v',          // ← cámbialo
         artista: 'Cuco',                 // ← cámbialo
         portada: 'img/rial.jfif',       // ← tu imagen (cuadrada)
+      },
+      jajas: {
+        boton: 'Evil version',
+        mensaje:
+          'Sabía que ibas a elegir esto. ' +
+          'Hoy es el Día de las Flores Amarillas y, en vez de un ramo normal, te mandé un planeta entero: ' +
+          'de nada, ya sé que no lo mereces. De hecho... devuélvemelo.' +
+          'Pero weno... te quiero hasta cuando te pones violenta o dices cosas q me sacan de onda xde.',
+        cancion: 'audio/jaja.mp3',
+        titulo: 'Mala',     // ← cámbialo
+        artista: '6ix9ine ',                 // ← cámbialo
+        portada: 'img/jaja.jpg',      // ← tu imagen (cuadrada)
       },
     },
   },
@@ -82,9 +84,9 @@ const DESTINATARIOS = {
     nombre: 'Squishy',
     mensaje:
       'Hoy el cosmos se llenó de flores amarillas y aun así tú brillas más. ' +
-      'Gracias por ser asi como eres: por las risas, las conversaciones y por quedarte siempre. ' +
+      'Gracias por ser como eres: por las risas, las conversaciones y por quedarte siempre. ' +
       'Feliz primavera, que florezcas hasta en el espacio.' +
-      '  PD: Ya tratame bonito p.',
+      '  PD: Ya no seas tan fría conmigo p :v',
     cancion: 'audio/amiga.mp3',
     titulo: 'Termonuclear',      // ← nombre de la canción
     artista: 'Perfecto miserable',   // ← artista
@@ -92,7 +94,7 @@ const DESTINATARIOS = {
     color: 0xffdf4d, // amarillo limón
   },
   liz: {
-    nombre: 'Para mi Licenciada',
+    nombre: 'Lizet :D',
     mensaje:
       'Que esta primavera te llene de flores, buena vibra y que ya no te hagan renegar xd. ' +
       'El universo entero te manda pétalos amarillos hoy (y mucha paciencia). ' +
@@ -202,6 +204,12 @@ function aplicarPerfilUI(perfil) {
   $('intro-sub').textContent = `Un viaje estelar para ${perfil.nombre}`;
   $('card-nombre').textContent = perfil.nombre;
   $('card-pie').textContent = EVENTO.pie;
+  // Firma (textContent: seguro)
+  const firmaIntro = $('intro-firma'), firmaCard = $('card-firma');
+  if (EVENTO.firma) {
+    firmaIntro.append('By ', Object.assign(document.createElement('b'), { textContent: EVENTO.firma }), ' ✦');
+    firmaCard.append('Atte: ', Object.assign(document.createElement('b'), { textContent: EVENTO.firma }));
+  }
   document.title = `Para ${perfil.nombre} · Flores Amarillas 🌼`;
 }
 
